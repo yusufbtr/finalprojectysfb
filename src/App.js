@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Home } from './Home';
+import Hooks from './Hooks';
+import Profile from './Profile';
+import {Layout} from './components/Layout';
+import {NavigationBar} from './components/NavigationBar';
+import {Jumbotron} from './components/Jumbotron';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+class App extends Component {
+  render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <React.Fragment>
+      <NavigationBar/>
+      <Jumbotron />
+        <Layout>
+          <Router>
+            <Switch>
+              <Route exact path="/" component={Home}/> {/*route ke page home*/}
+              <Route path="/hooks" component={Hooks}/> {/*route ke page about*/}
+              <Route path="/profile" component={Profile}/> {/*route ke page profile */}
+            </Switch>
+          </Router>
+        </Layout>
+    </React.Fragment>
+    );
+  }
+
+  
 }
 
 export default App;
